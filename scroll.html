@@ -48,6 +48,7 @@
 </div>
 
 <script>
+    //для запамятовування місця прокрутки
    var scrolled = 0;
     var up = document.querySelector('.up');
     var down = document.querySelector('.down');
@@ -67,13 +68,16 @@
     };
 
     window.onscroll = function (e) {
+      // приховує down при прокрутці вниз і робить видимим up
       if(down.style.display == 'inline' && document.body.scrollTop > 0) {
-
         down.style.display = '';
         up.style.display = 'inline';
-
-
       }
+      // забирає up на верху сторінки
+      if (document.body.scrollTop === 0){
+        up.style.display = '';
+      }
+      // умова для появи up при першій прокрутці
       if ( document.body.scrollTop > document.body.clientHeight) {
         up.style.display = 'inline';
         scrolled = document.body.scrollTop;
