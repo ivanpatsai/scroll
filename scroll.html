@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        #matrix {
+            width: 400px;
+            margin: auto;
+            overflow: auto;
+            text-align: justify;
+        }
+        .up, .down {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+        }
+        .up {
+            display: none;
+        }
+        .down {
+            display: none;
+        }
+
+    </style>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<span class="up clickable">▲ </span>
+<span class="down clickable">▼</span>
+
+
+
+<div id="matrix">
+    <script>
+      for (var i = 0; i < 2000; i++) document.writeln(i)
+    </script>
+</div>
+
+<script>
+   var scrolled = 0;
+    var up = document.querySelector('.up');
+    var down = document.querySelector('.down');
+    document.body.onclick = function (e) {
+      var target = e.target;
+      if (!target.classList.contains('clickable')) {return;};
+      if (target.classList.contains('up')){
+        document.body.scrollTop = 0;
+        up.style.display = '';
+        down.style.display = 'inline';
+      } else if (target.classList.contains('down')) {
+        document.body.scrollTop = scrolled;
+        down.style.display = '';
+        up.style.display = 'inline';
+      }
+
+    };
+
+    window.onscroll = function (e) {
+      if(down.style.display == 'inline' && document.body.scrollTop > 0) {
+
+        down.style.display = '';
+        up.style.display = 'inline';
+
+
+      }
+      if ( document.body.scrollTop > document.body.clientHeight) {
+        up.style.display = 'inline';
+        scrolled = document.body.scrollTop;
+      }
+    };
+
+</script>
+</body>
+
+</html>
